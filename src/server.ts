@@ -24,8 +24,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Separate Redis connection just for subscribing (pub/sub connections
-// can't run normal Redis commands, so this must be its own connection)
+
 const subscriber = new Redis("redis://localhost:6379");
 subscriber.subscribe("file_processed_events");
 

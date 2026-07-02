@@ -11,7 +11,6 @@ async function ensureConsumerGroup(): Promise<void> {
     console.log(`[consumer] created consumer group "${GROUP_NAME}"`);
   } catch (err: any) {
     if (!String(err.message).includes("BUSYGROUP")) throw err;
-    // BUSYGROUP just means the group already exists - that's fine
   }
 }
 
