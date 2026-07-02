@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket Test</title>
+</head>
+<body>
+  <h2>Listening for file_processed events.</h2>
+  <div id="log"></div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script>
+    const socket = io("http://localhost:4000");
+
+    socket.on("connect", () => {
+      console.log("Connected to server:", socket.id);
+      document.getElementById("log").innerHTML += "<p>Connected: " + socket.id + "</p>";
+    });
+
+    socket.on("file_processed", (payload) => {
+      console.log("file_processed event received:", payload);
+      document.getElementById("log").innerHTML +=
+        "<p><strong>file_processed:</strong> " + JSON.stringify(payload) + "</p>";
+    });
+  </script>
+</body>
+</html>
